@@ -1,7 +1,7 @@
 {
   "name": "baggyui",
   "description": "UI Components with Vue 2.0",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "author": "cobish",
   "homepage": "https://baggyui.github.io",
   "scripts": {
