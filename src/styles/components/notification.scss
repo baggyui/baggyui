@@ -1,0 +1,87 @@
+$notification-prefix-cls: "v-notification";
+
+// 通知框
+.#{$notification-prefix-cls} {
+  position: fixed;
+  z-index: 1010;
+  box-sizing: border-box;
+  top: 16px;
+  right: 16px;
+  padding: 20px;
+  width: 330px;
+  background-color: #fff;
+  box-shadow: 0 1px 6px rgba(0,0,0,.2);
+  transition: opacity .3s, transform .3s, right .3s, top .4s;
+
+  .#{$notification-prefix-cls}-title {
+    margin: 0;
+    font-weight: 400;
+    font-size: 16px;
+    text-align: left;
+    color: #1f2d3d;
+  }
+
+  .#{$notification-prefix-cls}-content {
+    margin-top: 10px;
+    line-height: 21px;
+    font-size: 14px;
+    text-align: left;
+    color: #8391a5;
+  }
+
+  .#{$notification-prefix-cls}-close {
+    position: absolute;
+    top: 10px;
+    right: 14px;
+    cursor: pointer;
+    font-size: 20px;
+    color: #bfcbd9;
+    transition: color .2s linear;
+
+    &:hover {
+      color: #97a8be;
+    }
+  }
+
+  .#{$notification-prefix-cls}-left-icon {
+    float: left;
+    font-size: 44px;
+  }
+
+  .v-icon-checkmark-circled {
+    @extend .#{$notification-prefix-cls}-left-icon;
+    color: #13ce66;
+  }
+
+  .v-icon-android-alert {
+    @extend .#{$notification-prefix-cls}-left-icon;
+    color: #f7ba2a;
+  }
+
+  .v-icon-close-circled {
+    @extend .#{$notification-prefix-cls}-left-icon;
+    color: #ff4949;
+  }
+
+  .v-icon-information-circled {
+    @extend .#{$notification-prefix-cls}-left-icon;
+    color: #50bfff;
+  }
+
+  .is-with-icon {
+    margin-left: 55px;
+  }
+}
+
+.#{$notification-prefix-cls}-fade-enter {
+  right: 0;
+  transform: translateX(100%);
+}
+
+.#{$notification-prefix-cls}-fade-leave {
+  opacity: 1;
+}
+
+.#{$notification-prefix-cls}-fade-leave-active {
+  opacity: 0;
+}

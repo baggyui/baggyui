@@ -1,0 +1,72 @@
+$message-prefix-cls: "v-message";
+$message-height: 40px;
+
+.#{$message-prefix-cls} {
+  position: fixed;
+  z-index: 1010;
+  box-sizing: border-box;
+  overflow: hidden;
+  top: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  min-width: 250px;
+  height: $message-height;
+  text-align: left;
+  font-size: 0;
+  background: #fff;
+  border-radius: 2px;
+  box-shadow: 0 1px 6px rgba(0, 0, 0, 0.2);
+  transition: opacity .3s, transform .4s;
+
+  .#{$message-prefix-cls}-content {
+    display: inline-block;
+    vertical-align: top;
+    box-sizing: border-box;
+    padding: 0 15px;
+    height: $message-height;
+    line-height: $message-height;
+    font-size: 14px;
+    color: #8391a5;
+  }
+
+  .#{$message-prefix-cls}-left-icon {
+    display: inline-block;
+    vertical-align: top;
+    width: $message-height;
+    height: $message-height;
+    line-height: $message-height;
+    text-align: center;
+    font-size: 17px;
+    color: #fff;
+  }
+
+  .v-icon-checkmark {
+    @extend .#{$message-prefix-cls}-left-icon;
+    background: #13ce66;
+  }
+
+  .v-icon-close {
+    @extend .#{$message-prefix-cls}-left-icon;
+    background: #ff4949;
+  }
+
+  .v-icon-information {
+    @extend .#{$message-prefix-cls}-left-icon;
+    background: #50bfff;
+  }
+
+  .v-icon-alert {
+    @extend .#{$message-prefix-cls}-left-icon;
+    background: #f7ba2a;
+  }
+}
+
+.#{$message-prefix-cls}-fade-enter,
+.#{$message-prefix-cls}-fade-leave-active  {
+  opacity: 0;
+  transform: translate(-50%,-100%);
+}
+
+.#{$message-prefix-cls}-fade-leave {
+  opacity: 1;
+}

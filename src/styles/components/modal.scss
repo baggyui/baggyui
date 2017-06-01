@@ -1,0 +1,131 @@
+$modal-prefix-cls: "v-modal";
+
+.#{$modal-prefix-cls}-shadow {
+  position: fixed;
+  z-index: 998;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: #000;
+  opacity: 0.5;
+  transition: opacity 0.2s;
+}
+
+.#{$modal-prefix-cls} {
+  position: fixed;
+  z-index: 999;
+  left: 50%;
+  top: 30%;
+  transform: translateX(-50%);
+  width: 420px;
+  text-align: left;
+  background-color: #fff;
+  border-radius: 2px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, .3);
+  box-sizing: border-box;
+  overflow: hidden;
+  transition: all 0.2s linear;
+}
+
+.#{$modal-prefix-cls}-header {
+  padding: 20px 20px 0;
+
+  .header-title {
+    line-height: 1;
+    font-size: 16px;
+    font-weight: 700;
+    color: #1f2d3d;
+  }
+
+  .header-close {
+    float: right;
+    line-height: 1;
+    font-size: 20px;
+    color: #bfcbd9;
+    cursor: pointer;
+    transition: color .2s linear;
+
+    &:hover {
+      color: #20a0ff;
+    }
+  }
+}
+
+.#{$modal-prefix-cls}-body {
+  position: relative;
+  padding: 30px 20px;
+  color: #48576a;
+  font-size: 14px;
+
+  p {
+    margin: 0;
+    padding: 0;
+    line-height: 1.4;
+  }
+
+  .#{$modal-prefix-cls}-left-icon {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 44px;
+  }
+
+  .v-icon-checkmark-circled {
+    @extend .#{$modal-prefix-cls}-left-icon;
+    color: #13ce66;
+  }
+
+  .v-icon-android-alert {
+    @extend .#{$modal-prefix-cls}-left-icon;
+    color: #f7ba2a;
+  }
+
+  .v-icon-close-circled {
+    @extend .#{$modal-prefix-cls}-left-icon;
+    color: #ff4949;
+  }
+
+  .v-icon-information-circled {
+    @extend .#{$modal-prefix-cls}-left-icon;
+    color: #50bfff;
+  }
+
+  .body-message-icon {
+    margin-left: 55px;
+  }
+
+  .body-input {
+    margin-top: 15px;
+    width: 100%;
+  }
+
+  .body-input-err {
+    color: #ff4949;
+    font-size: 12px;
+    min-height: 18px;
+    margin-top: 4px;
+  }
+}
+
+.#{$modal-prefix-cls}-footer {
+  padding: 10px 20px 15px;
+  text-align: right;
+  font-size: 0;
+  box-sizing: border-box;
+
+  button:nth-child(2) {
+    margin-left: 10px;
+  }
+}
+
+.#{$modal-prefix-cls}-fade-enter,
+.#{$modal-prefix-cls}-fade-leave-active {
+  opacity: 0;
+}
+
+.#{$modal-prefix-cls}-ease-enter,
+.#{$modal-prefix-cls}-ease-leave-active {
+  opacity: 0;
+  margin-top: -20px;
+}

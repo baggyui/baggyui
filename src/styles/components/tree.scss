@@ -1,0 +1,65 @@
+$tree-prefix-cls: "v-tree";
+
+.#{$tree-prefix-cls} {
+  cursor: default;
+  background: #fff;
+  border: 1px solid #d1dbe5;
+}
+
+.#{$tree-prefix-cls}-item {
+  text-align: left;
+}
+
+.#{$tree-prefix-cls}-item-child {
+  margin-left: 20px;
+}
+
+.#{$tree-prefix-cls}-item-cell {
+  line-height: 36px;
+  font-size: 0;
+  height: 36px;
+  cursor: pointer;
+  white-space: nowrap;
+  overflow: hidden;
+  transition: background 0.2s ease-in-out;
+
+  &:hover {
+    background: #e4e8f1;
+  }
+}
+
+.#{$tree-prefix-cls}-item-arrow {
+  display: inline-block;
+  padding: 0 5px 0 10px;
+  width: 10px;
+  text-align: left;
+  color: #97a8be;
+
+  i {
+    display: inline-block;
+    vertical-align: middle;
+    font-size: 18px;
+    transform: translateY(-1px);
+    transition: transform 0.3s ease-in-out;
+
+    &.isOpen {
+      transform: rotate(90deg) translateY(0);
+    }
+  }
+}
+
+.#{$tree-prefix-cls}-item-label {
+  display: inline-block;
+  vertical-align: middle;
+  font-size: 14px;
+}
+
+.#{$tree-prefix-cls}-item-slide {
+  opacity: 1;
+  transition:  opacity 0.2s ease-in-out;
+}
+
+.#{$tree-prefix-cls}-item-slide-enter,
+.#{$tree-prefix-cls}-item-slide-leave-active {
+  opacity: 0;
+}

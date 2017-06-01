@@ -1,0 +1,76 @@
+$scrollbar-prefix-cls: "v-scrollbar";
+
+.#{$scrollbar-prefix-cls}-transition, 
+.#{$scrollbar-prefix-cls}__scrollbar-vertical, 
+.#{$scrollbar-prefix-cls}__scrollbar-horizontal {
+  transition: all 0.5s ease;
+  -moz-transition: all 0.5s ease;
+  -webkit-transition: all 0.5s ease;
+  -o-transition: all 0.5s ease;
+}
+
+.#{$scrollbar-prefix-cls}-transition--scrollbar {
+  transition: opacity 0.5s linear;
+  -moz-transition: opacity 0.5s linear;
+  -webkit-transition: opacity 0.5s linear;
+  -o-transition: opacity 0.5s linear;
+}
+
+.#{$scrollbar-prefix-cls}__wrapper {
+  margin: 0 auto;
+  overflow: hidden;
+  position: relative;
+  background: white;
+}
+
+.#{$scrollbar-prefix-cls}__wrapper:hover 
+.#{$scrollbar-prefix-cls}__scrollbar-vertical, 
+.#{$scrollbar-prefix-cls}__wrapper:hover 
+.#{$scrollbar-prefix-cls}__scrollbar-horizontal {
+  opacity: 1;
+}
+
+.#{$scrollbar-prefix-cls}__inline {
+  display: inline-block;
+}
+
+.#{$scrollbar-prefix-cls}__scrollbar-vertical, 
+.#{$scrollbar-prefix-cls}__scrollbar-horizontal {
+  opacity: 0.5;
+  position: absolute;
+  background: transparent;
+}
+
+.#{$scrollbar-prefix-cls}__scrollbar-vertical:hover, 
+.#{$scrollbar-prefix-cls}__scrollbar-horizontal:hover {
+  background: rgba(0, 0, 0, 0.3);
+}
+
+.#{$scrollbar-prefix-cls}__scrollbar-vertical .scrollbar, 
+.#{$scrollbar-prefix-cls}__scrollbar-horizontal .scrollbar {
+  position: relative;
+  background: rgba(0, 0, 0, 0.5);
+  cursor: default;
+}
+
+.#{$scrollbar-prefix-cls}__scrollbar-vertical {
+  width: 10px;
+  height: 100%;
+  top: 0;
+  right: 0;
+}
+
+.#{$scrollbar-prefix-cls}__scrollbar-vertical .scrollbar {
+  width: 10px;
+}
+
+.#{$scrollbar-prefix-cls}__scrollbar-horizontal {
+  height: 10px;
+  width: 100%;
+  bottom: 0;
+  right: 0;
+}
+
+.#{$scrollbar-prefix-cls}__scrollbar-horizontal .scrollbar {
+  height: 10px;
+}

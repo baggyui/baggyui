@@ -1,0 +1,81 @@
+$dialog-prefix-cls: "v-dialog";
+
+.#{$dialog-prefix-cls}-shadow {
+  position: fixed;
+  z-index: 998;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: #000;
+  opacity: 0.5;
+  transition: opacity 0.2s;
+}
+
+.#{$dialog-prefix-cls} {
+  position: fixed;
+  z-index: 999;
+  left: 50%;
+  top: 30%;
+  transform: translateX(-50%);
+  min-width: 520px;
+  text-align: left;
+  background-color: #fff;
+  border-radius: 2px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, .3);
+  box-sizing: border-box;
+  overflow: hidden;
+  transition: all 0.2s linear;
+}
+
+.#{$dialog-prefix-cls}-header {
+  padding: 20px 20px 0;
+
+  .header-title {
+    line-height: 1;
+    font-size: 16px;
+    font-weight: 700;
+    color: #1f2d3d;
+  }
+
+  .header-close {
+    float: right;
+    line-height: 1;
+    font-size: 20px;
+    color: #bfcbd9;
+    cursor: pointer;
+    transition: color .2s linear;
+
+    &:hover {
+      color: #20a0ff;
+    }
+  }
+}
+
+.#{$dialog-prefix-cls}-body {
+  padding: 30px 20px;
+  color: #48576a;
+  font-size: 14px;
+}
+
+.#{$dialog-prefix-cls}-footer {
+  padding: 10px 20px 15px;
+  text-align: right;
+  font-size: 0;
+  box-sizing: border-box;
+
+  button:nth-child(2) {
+    margin-left: 10px;
+  }
+}
+
+.#{$dialog-prefix-cls}-fade-enter,
+.#{$dialog-prefix-cls}-fade-leave-active {
+  opacity: 0;
+}
+
+.#{$dialog-prefix-cls}-ease-enter,
+.#{$dialog-prefix-cls}-ease-leave-active {
+  opacity: 0;
+  margin-top: -20px;
+}

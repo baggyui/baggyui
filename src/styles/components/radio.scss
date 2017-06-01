@@ -1,0 +1,115 @@
+$radio-prefix-cls: "v-radio";
+
+// 单选框
+.#{$radio-prefix-cls} {
+  color: #1f2d3d;
+  position: relative;
+  cursor: pointer;
+  display: inline-block;
+  white-space: nowrap;
+  user-select: none;
+
+  .#{$radio-prefix-cls}-input {
+    position: relative;
+
+    .#{$radio-prefix-cls}-inner {
+      display: inline-block;
+      vertical-align: middle;
+      margin-top: 1px;
+      border: 1px solid #bfcbd9;
+      border-radius: 100%;
+      width: 18px;
+      height: 18px;
+      border-radius: 50%;
+      background-color: #fff;
+      position: relative;
+      cursor: pointer;
+      display: inline-block;
+      box-sizing: border-box;
+      transition: all .2s ease-in-out;
+
+      &:hover {
+        border-color: #20a0ff;
+      }
+
+      &:after {
+        position: absolute;
+        width: 8px;
+        height: 8px;
+        border-radius: 50%;
+        left: 0;
+        right: 0;
+        top: 0;
+        bottom: 0;
+        margin: auto;
+        content: "";
+        background-color: #39f;
+        opacity: 0;
+        transition: all .2s ease-in-out;
+        transform: scale(0);
+      }
+    }
+
+    .#{$radio-prefix-cls}-original {
+      opacity: 0;
+      outline: none;
+      position: absolute;
+      z-index: -1;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      margin: 0;
+    }
+  }
+
+  .#{$radio-prefix-cls}-text {
+    display: inline-block;
+    vertical-align: middle;
+  }
+}
+
+// 单选框选中
+.#{$radio-prefix-cls}-checked {
+  .#{$radio-prefix-cls}-input {
+    .#{$radio-prefix-cls}-inner {
+      border-color: #20a0ff;
+
+      &:after {
+        opacity: 1;
+        transform: scale(1);
+      }
+    }
+  }
+}
+
+// 禁用状态
+.#{$radio-prefix-cls}-disabled {
+  color: #bbb;
+  cursor: not-allowed;
+
+  .#{$radio-prefix-cls}-input {
+    .#{$radio-prefix-cls}-inner,
+    .#{$radio-prefix-cls}-inner:hover {
+      background-color: #eef1f6;
+      border-color: #d1dbe5;
+      cursor: not-allowed;
+    }
+  }
+
+  &.#{$radio-prefix-cls}-checked {
+    .#{$radio-prefix-cls}-input {
+      .#{$radio-prefix-cls}-inner {
+        &:after {
+          background-color: #d1dbe5;
+        }
+      }
+    }
+  }
+}
+
+// Group
+.#{$radio-prefix-cls}-group {
+  display: inline-block;
+  vertical-align: middle;
+}

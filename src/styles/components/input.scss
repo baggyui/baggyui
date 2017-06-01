@@ -1,0 +1,243 @@
+$input-prefix-cls: "v-input";
+$placeholder-color: #97a8be;
+$select-height: 36px;
+
+.#{$input-prefix-cls} {
+  position: relative;
+  display: inline-block;
+  width: 240px;
+}
+
+.#{$input-prefix-cls}-area {
+  width: 414px;
+}
+
+.#{$input-prefix-cls}-invalid {
+  .#{$input-prefix-cls}-text,
+  .#{$input-prefix-cls}-text:hover,
+  .#{$input-prefix-cls}-text:focus,
+  .#{$input-prefix-cls}-textarea,
+  .#{$input-prefix-cls}-textarea:hover,
+  .#{$input-prefix-cls}-textarea:focus {
+    border-color: #ff4949;
+  }
+}
+
+.#{$input-prefix-cls}-text {
+  display: block;
+  padding: 3px 10px;
+  color: #1f2d3d;
+  width: 100%;
+  height: 36px;
+  line-height: 1;
+  outline: none;
+  box-sizing: border-box;
+  background-color: #fff;
+  background-image: none;
+  border-radius: 4px;
+  border: 1px solid #bfcbd9;
+  transition: border-color .2s cubic-bezier(.645,.045,.355,1);
+
+  &:hover {
+    border-color: #8391a5;
+  }
+
+  &:focus {
+    border-color: #20a0ff;
+  }
+
+  &[disabled],
+  &[disabled]:hover
+  &[disabled]:focus {
+    background-color: #eef1f6;
+    border-color: #d1dbe5;
+    color: #bbb;
+    cursor: not-allowed;
+  }
+
+  &.#{$input-prefix-cls}-text-icon {
+    padding-right: 35px;
+  }
+
+  &::placeholder {
+    color: $placeholder-color;
+  }
+}
+
+.#{$input-prefix-cls}-textarea {
+  display: block;
+  resize: none;
+  padding: 5px 7px;
+  line-height: 1.5;
+  box-sizing: border-box;
+  width: 100%;
+  font-size: 14px;
+  color: #1f2d3d;
+  outline: none;
+  background-color: #fff;
+  background-image: none;
+  border: 1px solid #bfcbd9;
+  border-radius: 4px;
+  transition: border-color .2s cubic-bezier(.645,.045,.355,1);
+
+  &:hover {
+    border-color: #8391a5;
+  }
+
+  &:focus {
+    border-color: #20a0ff;
+  }
+
+  &::placeholder {
+    color: $placeholder-color;
+  }
+}
+
+.#{$input-prefix-cls}-icon {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 35px;
+  height: 100%;
+  text-align: center;
+  font-size: 19px;
+  line-height: 36px;
+  color: #bfcbd9;
+  cursor: pointer;
+  transition: color .2s cubic-bezier(.645,.045,.355,1);
+
+  &:hover {
+    color: #8391a5;
+  }
+
+  &:active {
+    color: #20a0ff;
+  }
+}
+
+// 下拉选择框
+.#{$input-prefix-cls}-dropdown {
+  position: absolute;
+  z-index: 900;
+  top: $select-height;
+  margin: 5px 0;
+  padding: 5px 0;
+  box-sizing: border-box;
+  width: 100%;
+  max-height: 200px;
+  overflow: auto;
+  background: #fff;
+  border-radius: 4px;
+  border: 1px solid #d1dbe5;
+  box-sizing: border-box;
+  box-shadow: 0 1px 6px rgba(0, 0, 0, .2);
+  transform: scaleY(1);
+  transform-origin: center top;
+  transition: transform .3s cubic-bezier(.23, 1, .32, 1), opacity .3s cubic-bezier(.23, 1, .32, 1);
+
+  .#{$input-prefix-cls}-list {
+    margin: 0;
+  }
+}
+
+// Option
+.#{$input-prefix-cls}-option {
+  position: relative;
+  display: block;
+  overflow: hidden;
+  margin: 0;
+  padding: 8px 10px;
+  height: 36px;
+  color: #48576a;
+  font-size: 14px;
+  line-height: 1.5;
+  text-align: left;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  box-sizing: border-box;
+  cursor: pointer;
+  transition: background .2s ease-in-out;
+
+  &:hover {
+    background-color: #e4e8f1;
+  }
+
+  &:active {
+    color: #fff;
+    background: #1c8de0;
+  }
+}
+
+.#{$input-prefix-cls}-zoom-enter,
+.#{$input-prefix-cls}-zoom-leave-active {
+  opacity: 0;
+  transform: scaleY(0);
+}
+
+// Disabled
+.#{$input-prefix-cls}-disabled {
+  .#{$input-prefix-cls}-icon {
+    cursor: not-allowed;
+
+    &:hover {
+      color: #bfcbd9;
+    }
+
+    &:active {
+      color: #bfcbd9;
+    }
+  }
+}
+
+// 前置或后置元素
+.#{$input-prefix-cls}-group {
+  display: inline-table;
+  line-height: normal;
+
+  input {
+    vertical-align: middle;
+    display: table-cell;
+  }
+
+  .#{$input-prefix-cls}-group-prepend,
+  .#{$input-prefix-cls}-group-append {
+    background-color: #fbfdff;
+    color: #97a8be;
+    vertical-align: middle;
+    display: table-cell;
+    position: relative;
+    border: 1px solid #bfcbd9;
+    border-radius: 4px;
+    padding: 0 10px;
+    width: 1%;
+    white-space: nowrap;
+  }
+}
+
+// 前置
+.#{$input-prefix-cls}-group-with-prepend {
+  input {
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+  }
+
+  .#{$input-prefix-cls}-group-prepend {
+    border-right: 0;
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+  }
+}
+
+// 后置
+.#{$input-prefix-cls}-group-with-append {
+  input {
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+  }
+
+  .#{$input-prefix-cls}-group-append {
+    border-left: 0;
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+  }
+}

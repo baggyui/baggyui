@@ -1,0 +1,26 @@
+$breadcrumb-prefix-cls: "v-breadcrumb";
+$breadcrumb-item-prefix-cls: "v-breadcrumb-item";
+
+.#{$breadcrumb-prefix-cls} {
+  font-size: 13px;
+  color: #97a8be;
+
+  &>span:last-child .#{$breadcrumb-item-prefix-cls}-separator {
+    display: none;
+  }
+}
+
+.#{$breadcrumb-item-prefix-cls}-link {
+  transition: color .15s linear;
+  color: #48576a;
+  cursor: pointer;
+
+  &:hover {
+    color: #20a0ff;
+  }
+}
+
+.#{$breadcrumb-item-prefix-cls}-separator {
+  margin: 0 6px;
+  color: #bfcbd9;
+}

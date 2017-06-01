@@ -1,0 +1,10 @@
+{
+  "extends": "eslint-config-cobish",
+  "plugins": ["vue"],
+  "env": {
+    "es6": true
+  },
+  "parserOptions": {
+    "sourceType": "module",
+  }
+}
