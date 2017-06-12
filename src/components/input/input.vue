@@ -11,7 +11,8 @@
         :placeholder="placeholder"
         @focus="handleFocus"
         @blur="handleBlur"
-        @input="handleInput">
+        @input="handleInput"
+        @keyup.delete="handleDelete">
       <v-icon
         v-if="icon"
         :type="icon"
@@ -29,7 +30,8 @@
       :rows="rows"
       @focus="handleFocus"
       @blur="handleBlur"
-      @input="handleInput"></textarea>
+      @input="handleInput"
+      @keyup.delete="handleDelete"></textarea>
 
     <transition name="v-input-zoom">
       <div
@@ -51,6 +53,7 @@
 <script>
   import clickoutside from '../../utils/clickoutside';
   import { oneOf } from '../../utils/assist';
+  import { isIE } from '../../utils/browser';
   import Option from './input-option';
 
   const prefixCls = 'v-input';
@@ -139,6 +142,12 @@
 
       handleInput(event) {
         this.changeInput(event.target.value);
+      },
+
+      handleDelete(event) {
+        if(isIE(9)) {
+          this.changeInput(event.target.value);
+        }
       },
 
       handleFocus(event) {
