@@ -51,9 +51,7 @@ if (typeof window !== 'undefined' && window.Vue) {
 };
 
 let obj = {
-  install,
-  Notification,
-  Message
+  install
 };
 
 Object.keys(components).forEach((key) => {

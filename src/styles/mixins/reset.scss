@@ -28,6 +28,12 @@ textarea {
   padding: 0;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
+
+body,
+input,
+textarea,
+code {
   font-family: "Helvetica Neue",Helvetica,"PingFang SC","Hiragino Sans GB","Microsoft YaHei","微软雅黑",Arial,sans-serif;
 }
 
@@ -97,4 +103,9 @@ button::-moz-focus-inner,
 input::-moz-focus-inner {
   padding: 0;
   border: none;
+}
+
+input::-ms-clear,
+input::-ms-reveal {
+  display: none;
 }
