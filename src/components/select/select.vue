@@ -6,11 +6,14 @@
       <i class="v-icon v-icon-arrow-down-b"></i>
     </div>
 
-    <transition name="v-select-zoom">
+    <transition
+      name="v-select-zoom"
+      @before-enter="beforeEnter"
+      @after-leave="afterLeave">
       <div
         ref="dropdown"
         v-show="visible"
-        :class="prefixCls + '-dropdown'"
+        :class="dropdownClasses"
         :style="style">
         <ul :class="prefixCls + '-list'">
           <slot></slot>
@@ -45,7 +48,8 @@
         prefixCls,
         visible: false,
         selected: '',
-        style: {}
+        style: {},
+        dropdownBottom: false
       };
     },
 
@@ -56,6 +60,15 @@
           {
             [`${prefixCls}-visible`]: this.visible,
             [`${prefixCls}-disabled`]: this.disabled
+          }
+        ];
+      },
+
+      dropdownClasses() {
+        return [
+          `${prefixCls}-dropdown`,
+          {
+            [`${prefixCls}-dropdown-bottom`]: this.dropdownBottom
           }
         ];
       }
@@ -77,7 +90,6 @@
 
       visible(val) {
         if (val) {
-          this.setPosition();
           this.$emit('on-focus');
         } else {
           this.$emit('on-blur');
@@ -121,8 +133,21 @@
           const selectHeight = 34;
           const p = getOffset(this.$el);
 
+          let windowHeight = window.innerHeight;
+          let dropdownHeight = this.$refs.dropdown.offsetHeight;
+          const padding = 5;
+
+          let dropdownTop;
+          if (p.top + selectHeight + dropdownHeight > windowHeight) {
+            dropdownTop = p.top - dropdownHeight - padding;
+            this.dropdownBottom = true;
+          } else {
+            dropdownTop = p.top + selectHeight + padding;
+            this.dropdownBottom = false;
+          }
+
           this.style = {
-            top: p.top + selectHeight + 'px',
+            top: `${dropdownTop}px`,
             left: `${p.left}px`,
             width: `${p.right - p.left}px`,
             maxHeight: `${this.maxHeight}px`,
@@ -130,21 +155,24 @@
         }
       },
 
-      init() {
+      initDropdown() {
         document.body.appendChild(this.$refs.dropdown);
+        this.$nextTick(() => {
+          this.setPosition();
 
-        // 监听窗口改动
-        window.addEventListener('resize', this.setPosition);
+          // 监听窗口改动
+          window.addEventListener('resize', this.setPosition);
 
-        // 监听滚动条改动
-        let parent = this.$el.parentNode;
-        while (parent !== document.body) {
-          parent.addEventListener('scroll', this.setPosition);
-          parent = parent.parentNode;
-        }
+          // 监听滚动条改动
+          let parent = this.$el.parentNode;
+          while (parent !== document.body) {
+            parent.addEventListener('scroll', this.setPosition);
+            parent = parent.parentNode;
+          }
+        });
       },
 
-      destroy() {
+      destroyDropdown() {
         // 移除窗口改动
         window.removeEventListener('resize', this.setPosition);
 
@@ -160,6 +188,14 @@
         }
 
         document.body.removeChild(this.$refs.dropdown);
+      },
+
+      beforeEnter() {
+        this.initDropdown();
+      },
+
+      afterLeave() {
+        this.destroyDropdown();
       }
     },
 
@@ -167,12 +203,6 @@
       this.$on('on-select-change', (value, label) => {
         this.select(value, label);
       });
-
-      this.init();
-    },
-
-    beforeDestroy() {
-      this.destroy();
     }
   };
 </script>
