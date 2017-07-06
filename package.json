@@ -8,7 +8,7 @@
     "dev": "webpack-dev-server --config build/webpack.dev.config.js",
     "build": "webpack --config build/webpack.build.config.js",
     "prod": "webpack --config build/webpack.prod.config.js",
-    "test": "cross-env BABEL_ENV=test karma start test/unit/karma.conf.js",
+    "test": "cross-env BABEL_ENV=test karma start test/unit/karma.conf.js --single-run",
     "prepublish": "npm run build && npm run prod"
   },
   "keywords": [
