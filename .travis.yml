@@ -1,5 +1,4 @@
 language: node_js
-env: PHANTOMJS_BIN=./node_modules/.bin/phantomjs
 node_js:
   - "5"
 script:
