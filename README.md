@@ -6,6 +6,8 @@
 
 # baggyui
 
+[![NPM version](https://img.shields.io/npm/v/brick.js.svg?style=flat)](https://www.npmjs.org/package/baggyui) [![Build Status](https://travis-ci.org/baggyui/baggyui.svg?branch=master)](https://travis-ci.org/baggyui/baggyui) [![Coverage Status](https://coveralls.io/repos/github/baggyui/baggyui/badge.svg?branch=master)](https://coveralls.io/github/baggyui/baggyui?branch=master)
+
 > UI Components with Vue 2.0
 
 ## Using CDN
