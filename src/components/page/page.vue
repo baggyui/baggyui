@@ -69,10 +69,16 @@
 </template>
 
 <script>
+  import Icon from '../icon';
+
   const prefixCls = 'v-page';
 
   export default {
     name: prefixCls,
+
+    components: {
+      'v-icon': Icon
+    },
 
     props: {
       total: {

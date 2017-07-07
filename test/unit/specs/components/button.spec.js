@@ -1,19 +1,5 @@
-import Vue from 'vue';
+import { getRenderedVm } from '../../util';
 import Button from '@/components/button';
-
-/**
- * 获取生成的vm
- *
- * @param {Object} Component 组件
- * @param {Object} propsData props数据
- * @return {Object} vue实例
- */
-function getRenderedVm(Component, propsData) {
-  const Ctor = Vue.extend(Component);
-  const vm = new Ctor({ propsData }).$mount();
-  return vm;
-}
-
 
 describe('Components Button', () => {
   it('props type', () => {
