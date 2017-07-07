@@ -1,5 +1,5 @@
 import Vue from 'vue';
-import Icon from '../../../src/components/icon';
+import Icon from '@/components/icon';
 
 /**
  * 获取生成的vm
@@ -15,7 +15,7 @@ function getRenderedVm(Component, propsData) {
 }
 
 
-describe('Icon', () => {
+describe('Components Icon', () => {
   it('props type', () => {
     const vm = getRenderedVm(Icon, {
       type: 'arrow-shrink'

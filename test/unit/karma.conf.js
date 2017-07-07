@@ -1,3 +1,5 @@
+var path = require('path');
+
 module.exports = function(config) {
   config.set({
     // frameworks to use
@@ -55,7 +57,8 @@ module.exports = function(config) {
       resolve: {
         extensions: ['.js', '.css', '.scss','.vue'],
         alias: {
-          'vue$': 'vue/dist/vue.common.js'
+          'vue$': 'vue/dist/vue.common.js',
+          '@': path.join(__dirname, '../../src'),
         }
       }
     }
