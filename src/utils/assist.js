@@ -22,7 +22,7 @@ export function deepCopy(data) {
 
   if (t === 'array') {
     o = [];
-  } else if ( t === 'object') {
+  } else if (t === 'object') {
     o = {};
   } else {
     return data;
@@ -32,11 +32,14 @@ export function deepCopy(data) {
     for (let i = 0; i < data.length; i++) {
       o.push(deepCopy(data[i]));
     }
-  } else if (t === 'object') {
+  }
+
+  if (t === 'object') {
     for (let i in data) {
       o[i] = deepCopy(data[i]);
     }
   }
+
   return o;
 }
 
