@@ -40,7 +40,7 @@
             this.$router.push(to);
           }
         } else {
-          if (typeof to === 'String') {
+          if (typeof to === 'string') {
             window.location.href = to;
           }
         }
