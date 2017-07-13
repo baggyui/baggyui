@@ -4,33 +4,39 @@
       <div
         v-show="visible"
         :class="prefixCls + '-shadow'"
-        @click="handleClose"></div>
+        ></div>
     </transition>
 
-    <transition :name="prefixCls + '-ease'">
-      <div :class="prefixCls" :style="styles" v-show="visible">
-        <!-- header -->
-        <div :class="prefixCls + '-header'">
-          <span class="header-title">{{ title }}</span>
-          <i v-if="closable"
-             class="header-close v-icon v-icon-android-close"
-             @click="handleClose"></i>
-        </div>
+    
+      <transition :name="prefixCls + '-ease'">
+        <div
+          v-show="visible"
+          :class="prefixCls + '-container'"
+          @click.self="handleClose">
+          <div :class="prefixCls" :style="styles">
+            <!-- header -->
+            <div :class="prefixCls + '-header'">
+              <span class="header-title">{{ title }}</span>
+              <i v-if="closable"
+                 class="header-close v-icon v-icon-android-close"
+                 @click="handleClose"></i>
+            </div>
 
-        <!-- body -->
-        <div v-if="$slots.body">
-          <slot name="body"></slot>
-        </div>
-        <div :class="prefixCls + '-body'" v-else>
-          <slot></slot>
-        </div>
+            <!-- body -->
+            <div v-if="$slots.body">
+              <slot name="body"></slot>
+            </div>
+            <div :class="prefixCls + '-body'" v-else>
+              <slot></slot>
+            </div>
 
-        <!-- footer -->
-        <div :class="prefixCls + '-footer'" v-if="$slots.footer">
-          <slot name="footer"></slot>
+            <!-- footer -->
+            <div :class="prefixCls + '-footer'" v-if="$slots.footer">
+              <slot name="footer"></slot>
+            </div>
+          </div>
         </div>
-      </div>
-    </transition>
+      </transition>
   </div>
 </template>
 
@@ -64,16 +70,16 @@
         let style = {};
 
         if (this.top) {
-          style['top'] = `${this.top}`;
+          style['margin-top'] = `${this.top}`;
         }
 
-        if (this.minWidth) {
-          style['min-width'] = `${this.minWidth}px`;
-        }
+        // if (this.minWidth) {
+        //   style['min-width'] = `${this.minWidth}px`;
+        // }
 
         if (this.width) {
           style['width'] = `${this.width}px`;
-          style['min-width'] = 'initial';
+          // style['min-width'] = 'initial';
         }
 
         return style;

@@ -12,20 +12,27 @@ $dialog-prefix-cls: "v-dialog";
   transition: opacity 0.2s;
 }
 
-.#{$dialog-prefix-cls} {
+.#{$dialog-prefix-cls}-container {
   position: fixed;
   z-index: 999;
-  left: 50%;
-  top: 30%;
-  transform: translateX(-50%);
-  min-width: 520px;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  overflow: auto;
+  opacity: 1;
+  transition: all 0.2s linear;
+}
+
+.#{$dialog-prefix-cls} {
+  margin: 15% auto 50px auto;
+  width: 520px;
   text-align: left;
   background-color: #fff;
   border-radius: 2px;
   box-shadow: 0 1px 3px rgba(0, 0, 0, .3);
   box-sizing: border-box;
   overflow: hidden;
-  transition: all 0.2s linear;
 }
 
 .#{$dialog-prefix-cls}-header {
@@ -77,5 +84,5 @@ $dialog-prefix-cls: "v-dialog";
 .#{$dialog-prefix-cls}-ease-enter,
 .#{$dialog-prefix-cls}-ease-leave-active {
   opacity: 0;
-  margin-top: -20px;
+  top: -20px;
 }
