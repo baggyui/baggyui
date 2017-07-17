@@ -1,18 +1,15 @@
 // 获取滚动条宽度
 export function scrollbarWidth() {
-  let parent = document.createElement('div');
-  let son = document.createElement('div');
+  // Create the measurement node
+  let scrollDiv = document.createElement("div");
+  scrollDiv.style.overflow = 'scroll';
+  document.body.appendChild(scrollDiv);
 
-  son.style.height = '1px';
-  parent.appendChild(son);
-  parent.style.visibility = 'hidden';
-  document.body.appendChild(parent);
+  // Get the scrollbar width
+  let scrollbarWidth = scrollDiv.offsetWidth - scrollDiv.clientWidth;
 
-  let sonWidth = son.clientWidth;
-  parent.style.overflowY = 'scroll';
-
-  let scrollbarWidth = sonWidth - son.clientWidth;
-  document.body.removeChild(parent);
+  // Delete the DIV 
+  document.body.removeChild(scrollDiv);
 
   return scrollbarWidth;
 }

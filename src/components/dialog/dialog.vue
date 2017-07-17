@@ -6,41 +6,42 @@
         :class="prefixCls + '-shadow'"
         ></div>
     </transition>
-
     
-      <transition :name="prefixCls + '-ease'">
-        <div
-          v-show="visible"
-          :class="prefixCls + '-container'"
-          @click.self="handleClose">
-          <div :class="prefixCls" :style="styles">
-            <!-- header -->
-            <div :class="prefixCls + '-header'">
-              <span class="header-title">{{ title }}</span>
-              <i v-if="closable"
-                 class="header-close v-icon v-icon-android-close"
-                 @click="handleClose"></i>
-            </div>
+    <transition :name="prefixCls + '-ease'">
+      <div
+        v-show="visible"
+        :class="prefixCls + '-container'"
+        @click.self="handleClose">
+        <div :class="prefixCls" :style="styles">
+          <!-- header -->
+          <div :class="prefixCls + '-header'">
+            <span class="header-title">{{ title }}</span>
+            <i v-if="closable"
+               class="header-close v-icon v-icon-android-close"
+               @click="handleClose"></i>
+          </div>
 
-            <!-- body -->
-            <div v-if="$slots.body">
-              <slot name="body"></slot>
-            </div>
-            <div :class="prefixCls + '-body'" v-else>
-              <slot></slot>
-            </div>
+          <!-- body -->
+          <div v-if="$slots.body">
+            <slot name="body"></slot>
+          </div>
+          <div :class="prefixCls + '-body'" v-else>
+            <slot></slot>
+          </div>
 
-            <!-- footer -->
-            <div :class="prefixCls + '-footer'" v-if="$slots.footer">
-              <slot name="footer"></slot>
-            </div>
+          <!-- footer -->
+          <div :class="prefixCls + '-footer'" v-if="$slots.footer">
+            <slot name="footer"></slot>
           </div>
         </div>
-      </transition>
+      </div>
+    </transition>
   </div>
 </template>
 
 <script>
+  import { scrollbarWidth } from '../../utils/elem';
+
   const prefixCls = 'v-dialog';
 
   export default {
@@ -96,9 +97,13 @@
 
         if (val) {
           this.$emit('open');
+          document.body.style.overflow = 'hidden';
+          document.body.style.paddingRight = scrollbarWidth() + 'px';
           document.addEventListener('keydown', this.escClose);
         } else {
           this.$emit('close');
+          document.body.style.overflow = 'auto';
+          document.body.style.paddingRight = 0;
           document.removeEventListener('keydown', this.escClose);
         }
       }
