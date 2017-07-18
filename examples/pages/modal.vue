@@ -153,15 +153,24 @@
           title: '提示',
           message: '请输入您的密码进行确认',
           inputType: 'password',
+          loading: true,
           inputValidate: (value) => {
             if (value.length < 6) {
               return '密码不能小于 6 位';
             }
           },
+          okValidate: (value) => {
+            if (value.length > 7) {
+              return '密码不能大于 7 位';
+            }
+          },
           onOk: (value) => {
-            this.$message({
-              message: `密码是：${value}`
-            });
+            setTimeout(() => {
+              this.$modal.remove();
+              this.$message({
+                message: `密码是：${value}`
+              });
+            }, 1000);
           }
         });
       }

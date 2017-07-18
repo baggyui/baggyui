@@ -81,7 +81,7 @@
 
     watch: {
       inputValue(val) {
-        this.validate(val);
+        this.validate(this.inputValidate);
       }
     },
 
@@ -92,7 +92,11 @@
       },
 
       handleOk() {
-        if (!this.validate()) {
+        if (!this.validate(this.inputValidate)) {
+          return;
+        }
+
+        if (!this.validate(this.okValidate)) {
           return;
         }
 
@@ -115,14 +119,13 @@
         }
       },
 
-      validate() {
+      validate(validate) {
         if (this.type !== 'prompt') {
           return true;
         }
 
-        let inputValidate = this.inputValidate;
-        if (typeof inputValidate === 'function') {
-          let result = inputValidate(this.inputValue);
+        if (typeof validate === 'function') {
+          let result = validate(this.inputValue);
 
           if (result === false) {
             this.inputErr = '输入错误';
