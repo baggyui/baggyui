@@ -51,6 +51,16 @@
       }
     },
 
+    methods: {
+      handleChange(val) {
+        let obj = {
+          index: this.index,
+          checked: val
+        };
+        this.$emit('select-cell', obj);
+      }
+    },
+
     mounted() {
       if (this.checked && this.column.type === 'selection') {
         this.handleChange(this.checked);
