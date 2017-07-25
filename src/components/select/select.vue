@@ -203,6 +203,12 @@
       this.$on('on-select-change', (value, label) => {
         this.select(value, label);
       });
+    },
+
+    beforeDestroy() {
+      if (this.visible) {
+        this.destroyDropdown();
+      }
     }
   };
 </script>

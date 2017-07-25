@@ -3,8 +3,7 @@
     <transition :name="prefixCls + '-fade'">
       <div
         v-show="visible"
-        :class="prefixCls + '-shadow'"
-        ></div>
+        :class="prefixCls + '-shadow'"></div>
     </transition>
     
     <transition :name="prefixCls + '-ease'">
@@ -52,7 +51,7 @@
       title: String,
       top: String,
       width: [Number, String],
-      minWidth: [Number, String],
+      // minWidth: [Number, String],
       closable: {
         default: true,
         type: Boolean
