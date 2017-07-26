@@ -1,9 +1,17 @@
+var package = require('../package.json');
 var path = require('path');
 var webpack = require('webpack');
 var ExtractTextPlugin = require("extract-text-webpack-plugin");
 
 function resolve(dir) {
   return path.join(__dirname, dir);
+}
+
+function getBanner(package) {
+  var banner = package.name + ' v' + package.version + '\n';
+  banner += '(c) ' + package.year + ' ' + package.author + '\n';
+  banner += 'Released under the MIT License.';
+  return banner;
 }
 
 module.exports = {
@@ -91,6 +99,7 @@ module.exports = {
   },
   plugins: [
     new ExtractTextPlugin('baggyui.css'),
+    new webpack.BannerPlugin(getBanner(package)),
     new webpack.DefinePlugin({
       'process.env.NODE_ENV': '"production"'
     })
