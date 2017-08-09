@@ -90,8 +90,10 @@
 
       visible(val) {
         if (val) {
+          this.initDropdown();
           this.$emit('on-focus');
         } else {
+          this.destroyDropdown();
           this.$emit('on-blur');
         }
       }
@@ -150,9 +152,13 @@
             top: `${dropdownTop}px`,
             left: `${p.left}px`,
             width: `${p.right - p.left}px`,
-            maxHeight: `${this.maxHeight}px`,
+            // maxHeight: `${this.maxHeight}px`,
           };
         }
+      },
+
+      scrollDropdown() {
+        this.visible = false;
       },
 
       initDropdown() {
@@ -166,7 +172,7 @@
           // 监听滚动条改动
           let parent = this.$el.parentNode;
           while (parent !== document.body) {
-            parent.addEventListener('scroll', this.setPosition);
+            parent.addEventListener('scroll', this.scrollDropdown);
             parent = parent.parentNode;
           }
         });
@@ -180,7 +186,7 @@
         let parent = this.$el.parentNode;
         while (parent !== document.body) {
           try {
-            parent.removeEventListener('scroll', this.setPosition);
+            parent.removeEventListener('scroll', this.scrollDropdown);
             parent = parent.parentNode;
           } catch (e) {
             parent = document.body;
@@ -191,11 +197,11 @@
       },
 
       beforeEnter() {
-        this.initDropdown();
+        // this.initDropdown();
       },
 
       afterLeave() {
-        this.destroyDropdown();
+        // this.destroyDropdown();
       }
     },
 
@@ -206,7 +212,7 @@
     },
 
     beforeDestroy() {
-      if (this.visible) {
+      if (this.$refs.dropdown.style.display !== 'none') {
         this.destroyDropdown();
       }
     }

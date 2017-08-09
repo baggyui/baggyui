@@ -13,10 +13,10 @@ $select-height: 36px;
 
 .#{$datepicker-prefix-cls}-dropdown {
   position: absolute;
-  z-index: 900;
+  z-index: 1000;
   top: $select-height;
-  margin: 5px 0;
   box-sizing: border-box;
+  width: 256px;
   overflow: auto;
   background: #fff;
   border-radius: 4px;
@@ -26,6 +26,10 @@ $select-height: 36px;
   transform: scaleY(1);
   transform-origin: center top;
   transition: transform .3s cubic-bezier(.23, 1, .32, 1), opacity .3s cubic-bezier(.23, 1, .32, 1);
+}
+
+.#{$select-prefix-cls}-dropdown-bottom {
+  transform-origin: center bottom;
 }
 
 .#{$datepicker-prefix-cls}-zoom-enter,

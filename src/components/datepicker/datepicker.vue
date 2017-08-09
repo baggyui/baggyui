@@ -8,7 +8,11 @@
       @on-icon-click="handleFocus"></v-input>
 
     <transition name="v-datepicker-zoom">
-      <div v-show="visible" :class="(prefixCls + '-dropdown')">
+      <div
+        ref="dropdown"
+        v-show="visible"
+        :class="dropdownClasses"
+        :style="style">
         <!-- 日历面板 -->
         <div v-show="(currentView === 'date')">
           <div :class="(prefixCls + '-header')">
@@ -102,6 +106,7 @@
 
 <script>
   import clickoutside from '../../utils/clickoutside';
+  import { getOffset } from '../../utils/fn';
   import { getMonthLength, getStartWeek, pad } from '../../utils/date';
 
   const prefixCls = 'v-datepicker';
@@ -132,11 +137,23 @@
 
         tmpYear: 0,
         tmpMonth: 0,
-        tmpDay: 0
+        tmpDay: 0,
+
+        style: {},
+        dropdownBottom: false
       };
     },
 
     computed: {
+      dropdownClasses() {
+        return [
+          `${prefixCls}-dropdown`,
+          {
+            [`${prefixCls}-dropdown-bottom`]: this.dropdownBottom
+          }
+        ];
+      },
+
       dateList() {
         let dateList = [];
 
@@ -202,12 +219,13 @@
 
     watch: {
       visible(val) {
-        if (!val) {
-          return;
+        if (val) {
+          this.showDateView();
+          this.initDate();
+          this.initDropdown();
+        } else {
+          this.destroyDropdown();
         }
-
-        this.showDateView();
-        this.initDate();
       }
     },
 
@@ -216,7 +234,18 @@
         this.visible = true;
       },
 
-      handleClickoutside() {
+      handleClickoutside(e) {
+        const parent = e.target.parentNode;
+        if (parent) {
+          const classList = parent.classList;
+
+          if (classList) {
+            if (classList.contains('v-datepicker-header') || classList.contains('v-datepicker-panel')) {
+              return;
+            }
+          }
+        }
+
         this.visible = false;
       },
 
@@ -310,11 +339,11 @@
         this.month = this.tmpMonth;
         this.day = date.value;
 
-        setTimeout(() => {
-          this.visible = false;
-          this.dateInput = `${this.year}-${pad(this.month, 2)}-${pad(this.day, 2)}`;
-          this.$emit('on-change', this.dateInput);
-        }, 150);
+        // setTimeout(() => {
+        this.visible = false;
+        this.dateInput = `${this.year}-${pad(this.month, 2)}-${pad(this.day, 2)}`;
+        this.$emit('on-change', this.dateInput);
+        // }, 150);
       },
 
       selectYear(year) {
@@ -342,6 +371,78 @@
       isDate(val) {
         const reg = /^\d{4}-\d{1,2}-\d{1,2}$/;
         return reg.test(val);
+      },
+
+      scrollDropdown() {
+        this.visible = false;
+      },
+
+      setPosition() {
+        if (this.visible) {
+          const selectHeight = 34;
+          const p = getOffset(this.$el);
+
+          let windowHeight = window.innerHeight;
+          let dropdownHeight = this.$refs.dropdown.offsetHeight;
+          const padding = 5;
+
+          let dropdownTop;
+          if (p.top + selectHeight + dropdownHeight > windowHeight) {
+            dropdownTop = p.top - dropdownHeight - padding;
+            this.dropdownBottom = true;
+          } else {
+            dropdownTop = p.top + selectHeight + padding;
+            this.dropdownBottom = false;
+          }
+
+          this.style = {
+            top: `${dropdownTop}px`,
+            left: `${p.left}px`,
+            // width: `${p.right - p.left}px`,
+            // maxHeight: `${this.maxHeight}px`,
+          };
+        }
+      },
+
+      initDropdown() {
+        document.body.appendChild(this.$refs.dropdown);
+        this.$nextTick(() => {
+          this.setPosition();
+
+          // 监听窗口改动
+          window.addEventListener('resize', this.setPosition);
+
+          // 监听滚动条改动
+          let parent = this.$el.parentNode;
+          while (parent !== document.body) {
+            parent.addEventListener('scroll', this.scrollDropdown);
+            parent = parent.parentNode;
+          }
+        });
+      },
+
+      destroyDropdown() {
+        // 移除窗口改动
+        window.removeEventListener('resize', this.setPosition);
+
+        // 移除滚动条改动
+        let parent = this.$el.parentNode;
+        while (parent !== document.body) {
+          try {
+            parent.removeEventListener('scroll', this.scrollDropdown);
+            parent = parent.parentNode;
+          } catch (e) {
+            parent = document.body;
+          }
+        }
+
+        document.body.removeChild(this.$refs.dropdown);
+      }
+    },
+
+    beforeDestroy() {
+      if (this.$refs.dropdown.style.display !== 'none') {
+        this.destroyDropdown();
       }
     }
   };
