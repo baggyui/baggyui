@@ -66,6 +66,7 @@ $radio-prefix-cls: "v-radio";
   .#{$radio-prefix-cls}-text {
     display: inline-block;
     vertical-align: middle;
+    font-size: 14px;
   }
 }
 
@@ -112,4 +113,40 @@ $radio-prefix-cls: "v-radio";
 .#{$radio-prefix-cls}-group {
   display: inline-block;
   vertical-align: middle;
+}
+
+// Group tab
+.#{$radio-prefix-cls}-group-tab {
+  .#{$radio-prefix-cls}-input {
+    display: none;
+  }
+
+  .#{$radio-prefix-cls} {
+    margin: 0;
+    padding: 6px 0;
+    min-width: 60px;
+    border: 1px solid #bfcbd9;
+    background: #fff;
+    border-left: 0;
+    transition: all .2s ease-in-out;
+
+    &:hover {
+      color: #20a0ff;
+    }
+
+    &:first-child {
+      border-left: 1px solid #bfcbd9;
+      border-radius: 4px 0 0 4px;
+    }
+
+    &:last-child {
+      border-radius: 0 4px 4px 0;
+    }
+  }
+
+  .#{$radio-prefix-cls}-checked,
+  .#{$radio-prefix-cls}-checked:hover {
+    color: #fff;
+    background: #20a0ff;
+  }
 }

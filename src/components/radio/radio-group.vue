@@ -1,5 +1,5 @@
 <template>
-  <div :class="prefixCls">
+  <div :class="groupClasses">
     <slot></slot>
   </div>
 </template>
@@ -11,13 +11,25 @@
     name: prefixCls,
 
     props: {
-      value: [String, Number]
+      value: [String, Number],
+      tab: Boolean
     },
 
     data() {
       return {
         prefixCls
       };
+    },
+
+    computed: {
+      groupClasses() {
+        return [
+          `${prefixCls}`,
+          {
+            [`${prefixCls}-tab`]: this.tab,
+          }
+        ];
+      }
     },
 
     mounted() {

@@ -1,5 +1,5 @@
 <template>
-  <label :class="radioClasses">
+  <label :class="radioClasses" :style="radioStyles">
     <span :class="inputClasses">
       <span :class="innerClasses"></span>
       <input 
@@ -24,7 +24,8 @@
     props: {
       value: [String, Number],
       label: [String, Number],
-      disabled: Boolean
+      disabled: Boolean,
+      width: Number
     },
 
     computed: {
@@ -36,6 +37,16 @@
             [`${prefixCls}-disabled`]: this.disabled
           }
         ];
+      },
+
+      radioStyles() {
+        let style = {};
+
+        if (this.width) {
+          style['width'] = `${this.width}px`;
+        }
+
+        return style;
       },
 
       inputClasses() {

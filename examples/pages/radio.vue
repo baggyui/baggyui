@@ -23,6 +23,15 @@
         :label="item.label">{{ item.value }}</v-radio>
     </v-radio-group>
     <p class="result">{{ city }}</p>
+
+    <p class="title">按钮样式</p>
+    <v-radio-group v-model="city" tab>
+      <v-radio
+        v-for="(item, index) in options"
+        :key="index"
+        :label="item.label">{{ item.value }}</v-radio>
+    </v-radio-group>
+    <p class="result">{{ city }}</p>
   </div>
 </template>
 
