@@ -117,6 +117,7 @@
     directives: { clickoutside },
 
     props: {
+      value: String,
       placeholder: [String, Number],
       icon: {
         type: Boolean,
@@ -129,7 +130,7 @@
         prefixCls,
         visible: false,
         currentView: 'date',
-        dateInput: '',
+        // dateInput: this.value,
 
         year: 0,
         month: 0,
@@ -145,6 +146,16 @@
     },
 
     computed: {
+      dateInput: {
+        get() {
+          return this.value;
+        },
+
+        set(val) {
+          this.$emit('input', val);
+        }
+      },
+
       dropdownClasses() {
         return [
           `${prefixCls}-dropdown`,
@@ -342,7 +353,6 @@
         // setTimeout(() => {
         this.visible = false;
         this.dateInput = `${this.year}-${pad(this.month, 2)}-${pad(this.day, 2)}`;
-        this.$emit('on-change', this.dateInput);
         // }, 150);
       },
 

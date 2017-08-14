@@ -28,7 +28,7 @@ $select-height: 36px;
   transition: transform .3s cubic-bezier(.23, 1, .32, 1), opacity .3s cubic-bezier(.23, 1, .32, 1);
 }
 
-.#{$select-prefix-cls}-dropdown-bottom {
+.#{$datepicker-prefix-cls}-dropdown-bottom {
   transform-origin: center bottom;
 }
 
