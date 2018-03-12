@@ -16,6 +16,12 @@
     <v-button type="danger">危险按钮</v-button>
     <v-button type="info">信息按钮</v-button>
 
+    <p class="title">带 Icon</p>
+    <v-button type="primary" icon="ios-plus-outline">新增按钮</v-button>
+    <v-button type="danger" icon="ios-close-outline">删除按钮</v-button>
+    <v-button type="text" icon="ios-plus-outline">新增按钮</v-button>
+    <v-button type="delete" icon="ios-close-outline">删除按钮</v-button>
+
     <p class="title">加载中</p>
     <v-button type="primary" loading>加载中</v-button>
     <v-button :loading="loading1" @click="toLoading1">

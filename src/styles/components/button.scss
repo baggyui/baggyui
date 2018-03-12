@@ -20,6 +20,11 @@ $btn-prefix-cls: "v-button";
   appearance: none;
   transition: color .2s linear,background-color .2s linear,border .2s linear;
 
+  .vertical-center {
+    display: inline-block;
+    vertical-align: middle;
+  }
+
   &:hover {
     color: #20a0ff;
     border-color: #20a0ff;
@@ -165,6 +170,12 @@ $btn-prefix-cls: "v-button";
     background: #48ace6;
     border-color: #48ace6;
   }
+}
+
+// 带 icon 的按钮
+.#{$btn-prefix-cls}-icon {
+  padding-top: 7px;
+  padding-bottom: 7px;
 }
 
 // 加载中按钮
