@@ -19,11 +19,25 @@
         <v-breadcrumb-item>面包屑</v-breadcrumb-item>
       </v-breadcrumb>
     </div>
+
+    <p class="title">点击事件</p>
+    <div class="crumb-box">
+      <v-breadcrumb>
+        <v-breadcrumb-item link @click="handleClick">首页</v-breadcrumb-item>
+        <v-breadcrumb-item>面包屑</v-breadcrumb-item>
+      </v-breadcrumb>
+    </div>
   </div>
 </template>
 
 <script>
-  export default {};
+  export default {
+    methods: {
+      handleClick() {
+        this.$router.push('/');
+      }
+    }
+  };
 </script>
 
 <style lang="sass" scoped>

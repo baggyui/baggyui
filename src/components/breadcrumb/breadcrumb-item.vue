@@ -1,7 +1,7 @@
 <template>
   <span>
     <a
-      v-if="to"
+      v-if="(to || link)"
       :class="(prefixCls + '-link')"
       @click="handleHref">
       <slot></slot>
@@ -19,7 +19,8 @@
 
     props: {
       to: [Object, String],
-      replace: Boolean
+      replace: Boolean,
+      link: Boolean
     },
 
     data() {
@@ -30,19 +31,23 @@
     },
 
     methods: {
-      handleHref() {
+      handleHref(evt) {
         const to = this.to;
 
-        if (this.$router) {
-          if (this.replace) {
-            this.$router.replace(to);
+        if (to && !this.link) {
+          if (this.$router) {
+            if (this.replace) {
+              this.$router.replace(to);
+            } else {
+              this.$router.push(to);
+            }
           } else {
-            this.$router.push(to);
+            if (typeof to === 'string') {
+              window.location.href = to;
+            }
           }
         } else {
-          if (typeof to === 'string') {
-            window.location.href = to;
-          }
+          this.$emit('click', evt);
         }
       }
     }
