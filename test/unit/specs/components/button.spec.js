@@ -10,18 +10,8 @@ describe('Components Button', () => {
     expect(vm.$el.classList.contains('v-button-primary')).to.true;
   });
 
-  // it('props loading', () => {
-  //   const vm = getRenderedVm(Button, {
-  //     type: 'primary',
-  //     loading: true
-  //   });
-
-  //   expect(vm.$el.classList.contains('v-button-loading')).to.true;
-  // });
-
   it('props disabled', () => {
     const vm = getRenderedVm(Button, {
-      type: 'primary',
       disabled: true
     });
 
@@ -30,17 +20,43 @@ describe('Components Button', () => {
 
   it('props nativeType', () => {
     const vm = getRenderedVm(Button, {
-      type: 'primary',
       nativeType: 'submit'
     });
 
     expect(vm.$el.type).to.equal('submit');
   });
 
-  it('methods handleClick', () => {
+  it('props width', () => {
     const vm = getRenderedVm(Button, {
-      type: 'primary'
+      width: 100
     });
+
+    expect(vm.$el.style.width).to.equal('100px');
+    expect(vm.$el.style.paddingLeft).to.equal('0px');
+    expect(vm.$el.style.paddingRight).to.equal('0px');
+  });
+
+  it('props height', () => {
+    const vm = getRenderedVm(Button, {
+      height: 100
+    });
+
+    expect(vm.$el.style.height).to.equal('100px');
+    expect(vm.$el.style.paddingTop).to.equal('0px');
+    expect(vm.$el.style.paddingBottom).to.equal('0px');
+  });
+
+  it('props icon', () => {
+    const vm = getRenderedVm(Button, {
+      icon: 'ios-plus-outline'
+    });
+
+    const classList = vm.$el.getElementsByTagName('span')[0].classList;
+    expect(classList.contains('vertical-center')).to.true;
+  });
+
+  it('methods handleClick', () => {
+    const vm = getRenderedVm(Button);
 
     vm.$el.click();
   });

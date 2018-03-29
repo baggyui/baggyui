@@ -95,4 +95,29 @@ describe('Components Breadcrumb', () => {
       done();
     });
   });
+
+  it('props link', done => {
+    const vm = new Vue({
+      template: `
+        <v-breadcrumb separator=">">
+          <v-breadcrumb-item ref="a" link @click="handleClick">首页</v-breadcrumb-item>
+          <v-breadcrumb-item>面包屑</v-breadcrumb-item>
+        </v-breadcrumb>
+      `,
+      methods: {
+        handleClick() {
+          this.$router.push('/');
+        }
+      },
+      router
+    }).$mount();
+
+    done();
+
+    Vue.nextTick(() => {
+      vm.$refs.a.handleHref();
+      expect(vm.$route.path).to.equal('/');
+      done();
+    });
+  });
 });
