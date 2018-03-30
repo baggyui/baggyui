@@ -1,15 +1,15 @@
 <template>
   <label :class="checkboxClasses">
-    <span :class="(prefixCls + '-input')">
-      <span :class="(prefixCls + '-inner')"></span>
+    <span :class="inputClasses">
+      <span :class="innerClasses"></span>
       <input
         type="checkbox"
         v-model="model"
         :value="label"
-        :class="(prefixCls + '-original')"
+        :class="originalClasses"
         :disabled="disabled">
     </span>
-    <span :class="(prefixCls + '-text')">
+    <span :class="textClasses">
       <slot>{{ label }}</slot>
     </span>
   </label>
@@ -29,12 +29,6 @@
       disabled: Boolean
     },
 
-    data() {
-      return {
-        prefixCls
-      };
-    },
-
     computed: {
       checkboxClasses() {
         return [
@@ -44,6 +38,22 @@
             [`${prefixCls}-disabled`]: this.disabled
           }
         ];
+      },
+
+      inputClasses() {
+        return `${prefixCls}-input`;
+      },
+
+      innerClasses() {
+        return `${prefixCls}-inner`;
+      },
+
+      originalClasses() {
+        return `${prefixCls}-original`;
+      },
+
+      textClasses() {
+        return `${prefixCls}-text`;
       },
 
       checkedClasses() {
@@ -63,6 +73,7 @@
         get() {
           return this.isGroup ? this.$parent.value : this.value;
         },
+
         set(val) {
           if (this.isGroup) {
             this.$parent.$emit('on-checkbox-change', val);

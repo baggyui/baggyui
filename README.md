@@ -1,16 +1,21 @@
 <p align="center">
   <a href="https://baggyui.github.io">
-    <img width="180" src="https://cloud.githubusercontent.com/assets/8475099/26186899/ac9ef582-3bc7-11e7-8c51-70a32d349fb2.png">
+    <img width="120" src="https://user-images.githubusercontent.com/8475099/38121346-3e994438-3401-11e8-9954-4270ba3059fa.png">
   </a>
 </p>
 
-# baggyui
+<p align="center">
+  <a href="https://travis-ci.org/baggyui/baggyui"><img src="https://travis-ci.org/baggyui/baggyui.svg?branch=master" alt="Build Status"></a>
+  <a href="https://coveralls.io/github/baggyui/baggyui?branch=master"><img src="https://coveralls.io/repos/github/baggyui/baggyui/badge.svg?branch=master" alt="Coverage Status"></a>
+  <a href="https://www.npmjs.org/package/baggyui"><img src="https://img.shields.io/npm/v/brick.js.svg?style=flat" alt="NPM version"></a>
+  <a href="https://www.npmjs.com/package/baggyui"><img src="https://img.shields.io/npm/l/vue.svg" alt="License"></a>
+</p>
 
-[![NPM version](https://img.shields.io/npm/v/brick.js.svg?style=flat)](https://www.npmjs.org/package/baggyui) [![Build Status](https://travis-ci.org/baggyui/baggyui.svg?branch=master)](https://travis-ci.org/baggyui/baggyui) [![Coverage Status](https://coveralls.io/repos/github/baggyui/baggyui/badge.svg?branch=master)](https://coveralls.io/github/baggyui/baggyui?branch=master)
+## baggyui
 
 > UI Components with Vue 2.0
 
-## Using CDN
+### Using CDN
 
 ``` html
 <!-- import css -->
@@ -19,15 +24,15 @@
 <script src="https://unpkg.com/baggyui/dist/baggyui.js"></script>
 ```
 
-## Using NPM
+### Using NPM
 
-### install
+#### install
 
 ``` bash
 $ npm install baggyui --save
 ```
 
-### usage
+#### usage
 
 ``` js
 import Vue from 'vue';
@@ -37,10 +42,10 @@ import 'baggyui/dist/baggyui.css';
 Vue.use(baggyui);
 ```
 
-## Browser Support
+### Browser Support
 
 Normal browsers and Internet Explorer 9+.
 
-## License
+### License
 
 This plugin is available under [the MIT license](http://mths.be/mit).
