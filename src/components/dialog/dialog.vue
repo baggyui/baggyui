@@ -50,8 +50,7 @@
       value: Boolean,
       title: String,
       top: String,
-      width: [Number, String],
-      // minWidth: [Number, String],
+      width: Number,
       closable: {
         default: true,
         type: Boolean
@@ -73,13 +72,8 @@
           style['margin-top'] = `${this.top}`;
         }
 
-        // if (this.minWidth) {
-        //   style['min-width'] = `${this.minWidth}px`;
-        // }
-
         if (this.width) {
           style['width'] = `${this.width}px`;
-          // style['min-width'] = 'initial';
         }
 
         return style;
