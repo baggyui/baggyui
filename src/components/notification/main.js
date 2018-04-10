@@ -8,27 +8,27 @@ let defaultTop = 16;
 let Notification = {};
 
 Notification = function(options = {}) {
-  showNotification(options);
+  return showNotification(options);
 };
 
 Notification.success = function(options = {}) {
   options.type = 'success';
-  showNotification(options);
+  return showNotification(options);
 };
 
 Notification.warning = function(options = {}) {
   options.type = 'warning';
-  showNotification(options);
+  return showNotification(options);
 };
 
 Notification.error = function(options = {}) {
   options.type = 'error';
-  showNotification(options);
+  return showNotification(options);
 };
 
 Notification.info = function(options = {}) {
   options.type = 'info';
-  showNotification(options);
+  return showNotification(options);
 };
 
 function showNotification(options) {
@@ -74,6 +74,7 @@ function showNotification(options) {
   document.body.appendChild(vm.$el);
 
   instances.push(instance);
+  return vm;
 }
 
 export default Notification;

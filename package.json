@@ -36,7 +36,7 @@
     "src"
   ],
   "dependencies": {
-    "vue": "^2.2.6",
+    "vue": "2.2.6",
     "vue-router": "^2.2.1"
   },
   "devDependencies": {
@@ -81,7 +81,7 @@
     "url-loader": "^0.5.7",
     "vue": "^2.2.6",
     "vue-loader": "^11.3.4",
-    "vue-template-compiler": "^2.2.6",
+    "vue-template-compiler": "2.2.6",
     "webpack": "^2.2.0",
     "webpack-dev-server": "^2.2.0"
   },

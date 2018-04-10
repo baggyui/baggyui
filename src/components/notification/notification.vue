@@ -1,10 +1,9 @@
 <template>
-  <transition
-    :name="prefixCls + '-fade'">
+  <transition :name="prefixCls + '-fade'">
     <div 
       :class="prefixCls"
       :style="{ top: top + 'px' }"
-      v-if="visible"
+      v-show="visible"
       @mouseenter="clearTimer"
       @mouseleave="startTimer">
       <v-icon
@@ -25,6 +24,9 @@
 </template>
 
 <script>
+  import { oneOf } from '../../utils/assist';
+  import Icon from '../icon';
+
   const prefixCls = 'v-notification';
   const typeMap = {
     success: 'checkmark-circled',
@@ -35,6 +37,10 @@
 
   export default {
     name: prefixCls,
+
+    components: {
+      'v-icon': Icon
+    },
 
     data() {
       return {
@@ -85,6 +91,19 @@
 
         if (typeof this.onClose === 'function') {
           this.onClose(this.id);
+        }
+      }
+    },
+
+    watch: {
+      visible(val) {
+        if (!val) {
+          this.clearTimer();
+          // 单元测试时，代码覆盖触发不了 transitionend
+          /* istanbul ignore next */
+          this.$el.addEventListener('transitionend', () => {
+            this.$el.parentNode.removeChild(this.$el);
+          });
         }
       }
     }
