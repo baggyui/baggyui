@@ -98,25 +98,27 @@ describe('Components Notification', () => {
   //   });
   // });
 
-
   it('show many', done => {
     const vm1 = Notification({
       title: '通知',
-      duration: 500
-    });
-
-    const vm2 = Notification({
-      title: '通知',
-      duration: 0
+      duration: 50
     });
 
     Vue.nextTick(() => {
-      expect(vm2.$el.style.top).to.equal('247px');
+      const vm2 = Notification({
+        title: '通知'
+      });
 
-      setTimeout(() => {
-        expect(vm2.$el.style.top).to.equal('204px');
-        done();
-      }, 1000);
+      Vue.nextTick(() => {
+        let top = parseInt(vm2.$el.style.top);
+        let height = parseInt(vm1.$el.offsetHeight);
+        let defaultTop = 16;
+
+        setTimeout(() => {
+          expect(vm2.$el.style.top).to.equal(`${top - height - defaultTop}px`);
+          done();
+        }, 1000);
+      });
     });
   });
 });
