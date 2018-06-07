@@ -1,16 +1,18 @@
 <template>
   <div :class="prefixCls" :style="{ height: height + 'px' }">
     <table
-      ref="tbody"
       cellspacing="0"
       cellpadding="0"
       border="0">
       <colgroup>
-        <col v-for="column in columns" :width="column.width">
+        <col
+          v-for="(column, index) in columns"
+          :key="index"
+          :width="column.width">
       </colgroup>
       <tbody>
-        <tr v-for="(row, index) in data">
-          <td v-for="column in columns">
+        <tr v-for="(row, index) in data" :key="index">
+          <td v-for="(column, coIndex) in columns" :key="coIndex">
             <v-table-cell
               :index="index"
               :row="row"
@@ -50,12 +52,6 @@
       };
     },
 
-    watch: {
-      data() {
-        this.initScrollbar();
-      }
-    },
-
     methods: {
       handleSelect(val) {
         let obj = {
@@ -68,26 +64,7 @@
 
       rowChecked(row) {
         return row._checked;
-      },
-
-      initScrollbar() {
-        this.$nextTick(() => {
-          if (this.height) {
-            let tbodyHeihgt = this.$refs.tbody.scrollHeight;
-            let showScrollbar = false;
-
-            if (this.height < tbodyHeihgt) {
-              showScrollbar = true;
-            }
-
-            this.$emit('scrollbar-change', showScrollbar);
-          }
-        });
       }
-    },
-
-    mounted() {
-      this.initScrollbar();
     }
   };
 </script>

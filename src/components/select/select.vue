@@ -26,6 +26,7 @@
 <script>
   import clickoutside from '../../utils/clickoutside';
   import { getOffset } from '../../utils/fn';
+  import { scrollbarWidth } from '../../utils/elem';
 
   const prefixCls = 'v-select';
 
@@ -71,6 +72,10 @@
             [`${prefixCls}-dropdown-bottom`]: this.dropdownBottom
           }
         ];
+      },
+
+      scrollbarWidth() {
+        return scrollbarWidth();
       }
     },
 
@@ -140,7 +145,7 @@
           const padding = 5;
 
           let dropdownTop;
-          if (p.top + selectHeight + dropdownHeight > windowHeight) {
+          if (p.top + selectHeight + dropdownHeight > windowHeight - this.scrollbarWidth) {
             dropdownTop = p.top - dropdownHeight - padding;
             this.dropdownBottom = true;
           } else {
@@ -193,7 +198,7 @@
           }
         }
 
-        document.body.removeChild(this.$refs.dropdown);
+        // document.body.removeChild(this.$refs.dropdown);
       },
 
       beforeEnter() {
@@ -212,8 +217,13 @@
     },
 
     beforeDestroy() {
+      // 因为 clickoutside 在 ie9 与 chrome 表现不同，this.visible 获取不一致
       if (this.$refs.dropdown.style.display !== 'none') {
         this.destroyDropdown();
+      }
+
+      if (this.$refs.dropdown.parentNode === document.body) {
+        document.body.removeChild(this.$refs.dropdown);
       }
     }
   };

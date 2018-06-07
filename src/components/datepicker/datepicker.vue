@@ -46,7 +46,8 @@
             </ul>
             <ul class="body-td">
               <li
-                v-for="date in dateList"
+                v-for="(date, index) in dateList"
+                :key="index"
                 :class="{
                   active: (date.currMonth && date.value === day && tmpMonth === month && tmpYear === year),
                   'no-curr-month': !date.currMonth
@@ -73,7 +74,8 @@
           </div>
           <ul :class="(prefixCls + '-panel')">
             <li
-              v-for="item in yearList"
+              v-for="(item, index) in yearList"
+              :key="index"
               :class="{ active: item === tmpYear }"
               @click="selectYear(item)">{{ item }}</li>
           </ul>
@@ -94,7 +96,8 @@
           </div>
           <ul :class="(prefixCls + '-panel')">
             <li
-              v-for="item in monthList"
+              v-for="(item, index) in monthList"
+              :key="index"
               :class="{ active: item === tmpMonth }"
               @click="selectMonth(item)">{{ item }} 月</li>
           </ul>
@@ -246,14 +249,13 @@
       },
 
       handleClickoutside(e) {
-        const parent = e.target.parentNode;
-        if (parent) {
-          const classList = parent.classList;
+        let parent = e.target.parentNode;
+        while (parent !== document.body) {
+          let classList = parent ? parent.classList : '';
+          parent = parent ? parent.parentNode : document.body;
 
-          if (classList) {
-            if (classList.contains('v-datepicker-header') || classList.contains('v-datepicker-panel')) {
-              return;
-            }
+          if (classList && classList.contains('v-datepicker-dropdown')) {
+            return;
           }
         }
 

@@ -81,23 +81,6 @@ describe('Components Notification', () => {
     });
   });
 
-  // it('show', done => {
-  //   const vm = Notification({
-  //     title: '通知',
-  //     message: '这是一条通知消息',
-  //     duration: 500
-  //   });
-
-  //   Vue.nextTick(() => { 
-  //     expect(vm.visible).to.be.true;
-
-  //     setTimeout(() => {
-  //       expect(vm.visible).to.be.false;
-  //       done();
-  //     }, 1000);
-  //   });
-  // });
-
   it('show many', done => {
     const vm1 = Notification({
       title: '通知',

@@ -1,15 +1,18 @@
 <template>
-  <div :class="prefixCls" :style="theadStyles">
+  <div :class="prefixCls">
     <table
       cellspacing="0"
       cellpadding="0"
       border="0">
       <colgroup>
-        <col v-for="column in columns" :width="column.width">
+        <col
+          v-for="(column, index) in columns"
+          :key="index"
+          :width="column.width">
       </colgroup>
       <thead>
         <tr>
-          <th v-for="column in columns">
+          <th v-for="(column, index) in columns" :key="index">
             <div class="cell">
               <template v-if="column.type === 'selection'">
                 <v-checkbox
@@ -26,8 +29,6 @@
 </template>
 
 <script>
-  import { scrollbarWidth } from '../../utils/elem';
-
   const prefixCls = 'v-table-head';
 
   export default {
@@ -35,28 +36,14 @@
 
     props: {
       columns: Array,
-      data: Array,
-      scrollbarVisible: Boolean
+      data: Array
     },
 
     data() {
       return {
         prefixCls,
-        checked: false,
-        scrollbarWidth: scrollbarWidth()
+        checked: false
       };
-    },
-
-    computed: {
-      theadStyles() {
-        if (this.scrollbarVisible) {
-          return {
-            paddingRight: `${this.scrollbarWidth}px`
-          };
-        } else {
-          return {};
-        }
-      }
     },
 
     watch: {
@@ -74,7 +61,7 @@
         let isSelectAll = true;
 
         for (let i = 0, len = this.data.length; i < len; i++) {
-          if (!this.data[i]._checked) {
+          if (!this.data[i]._checked && !this.data[i].checkDisabled) {
             isSelectAll = false;
             break;
           }

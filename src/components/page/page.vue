@@ -31,7 +31,8 @@
 
     <!-- 页数 -->
     <li
-      v-for="pager in pagers"
+      v-for="(pager, index) in pagers"
+      :key="index"
       :class="[
         prefixCls + '-number',
         { active: currentPage === pager }

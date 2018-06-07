@@ -1,7 +1,7 @@
 <template>
   <transition :name="prefixCls + '-fade'">
     <div
-      v-if="visible"
+      v-show="visible"
       :class="prefixCls"
       @mouseenter="clearTimer"
       @mouseleave="startTimer">
@@ -37,6 +37,16 @@
     computed: {
       typeClass() {
         return typeMap[this.type];
+      }
+    },
+
+    watch: {
+      visible(val) {
+        if (!val) {
+          this.$el.addEventListener('transitionend', () => {
+            this.$el.parentNode.removeChild(this.$el);
+          });
+        }
       }
     },
 

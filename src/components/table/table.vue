@@ -3,7 +3,6 @@
     <v-table-head
       :columns="columns"
       :data="rebuildData"
-      :scrollbar-visible="scrollbarVisible"
       @select-all="handleSelectAll"></v-table-head>
 
     <v-table-body
@@ -11,10 +10,18 @@
       :columns="columns"
       :data="rebuildData"
       :height="height"
-      @select-change="handleSelect"
-      @scrollbar-change="handleScrollbar"></v-table-body>
-    <div v-else :class="(prefixCls + '-empty')">
-      <span>{{ emptyText }}</span>
+      @select-change="handleSelect"></v-table-body>
+    <div
+      v-else
+      :class="(prefixCls + '-empty')"
+      :style="{ height: height + 'px' }">
+      <span>
+        <v-icon
+          type="ios-information-outline"
+          color="#1081eb"
+          size="25"></v-icon>
+        <span>{{ emptyText }}</span>
+      </span>
     </div>
   </div>
 </template>
@@ -60,8 +67,7 @@
       return {
         prefixCls,
         rebuildData: this.getRebuildData(),
-        selectArr: [],
-        scrollbarVisible: false
+        selectArr: []
       };
     },
 
@@ -99,6 +105,9 @@
 
       changeChecked(index, value) {
         let obj = this.rebuildData[index];
+
+        if (obj.checkDisabled) return;
+
         obj._checked = value;
         this.rebuildData.splice(index, 1, obj);
       },
@@ -134,10 +143,6 @@
 
         checkedArr = this.getSelection();
         this.$emit('selection-change', checkedArr);
-      },
-
-      handleScrollbar(val) {
-        this.scrollbarVisible = val;
       }
     }
   };

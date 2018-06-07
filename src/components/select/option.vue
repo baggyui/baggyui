@@ -2,6 +2,7 @@
   <li
     :class="classes"
     :title="showTitle(label)"
+    :data-value="value"
     @click.stop="select(value, label)">{{ label }}</li>
 </template>
 
@@ -19,7 +20,7 @@
 
     data() {
       return {
-        selected: false,
+        selected: false
       };
     },
 
